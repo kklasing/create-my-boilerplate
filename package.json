@@ -1,5 +1,5 @@
 {
-  "name": "create-my-boilerplate",
+  "name": "@codemill/create-my-boilerplate",
   "version": "1.0.0",
   "description": "A boiler plate application setup",
   "main": "index.js",
@@ -16,6 +16,6 @@
     "rimraf": "^3.0.2"
   },
   "bin" :{
-    "create-boilerplate": "./generate-app.js"
+    "create-boilerplate": "./bin/generate-app.js"
   }
 }
