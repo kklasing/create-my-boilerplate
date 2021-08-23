@@ -1,47 +1,47 @@
-const { execSync } = require('child_process')
-const path = require('path')
-const fs = require('fs')
+const { execSync } = require('child_process');
+const path = require('path');
+const fs = require('fs');
 
 if (process.argv.length < 3) {
-    console.log('You have to provide a name for your application.')
-    console.log('For example: ')
-    console.log('    nox create-my-boilerplate my-app')
-    process.exit(1)
+    console.log('You have to provide a name for your application.');
+    console.log('For example: ');
+    console.log('    nox create-my-boilerplate my-app');
+    process.exit(1);
 }
 
-const projectName = process.argv[2]
-const currentPath = process.cmd()
-const projectPath = path.join(currentPath, projectName)
-const git_repo = 'https://github.com/kklasing/create-my-boilerplate'
+const projectName = process.argv[2];
+const currentPath = process.cmd();
+const projectPath = path.join(currentPath, projectName);
+const git_repo = 'https://github.com/kklasing/create-my-boilerplate';
 
 try {
-    fs.mkdirSync(projectPath)
+    fs.mkdirSync(projectPath);
 } catch (err) {
     if (err.code === 'EEXIST') {
-        console.log(`The file ${projectName} already exist in the current directory, please give it another name`)
+        console.log(`The file ${projectName} already exist in the current directory, please give it another name`);
     } else {
-        console.log(err)
+        console.log(err);
     }
-    process.exit(1)
+    process.exit(1);
 }
 
 async function main() {
     try {
-        console.log('Downloading files...')
-        execSync(`git clone --depth 1 ${git_repo} ${projectPath}`)
+        console.log('Downloading files...');
+        execSync(`git clone --depth 1 ${git_repo} ${projectPath}`);
 
-        process.chdir(projectPath)
+        process.chdir(projectPath);
 
-        console.log('Installing dependencies...')
-        execSync('npm install')
+        console.log('Installing dependencies...');
+        execSync('npm install');
 
-        console.log('Removing useless files')
-        execSync('npx rimraf ./.git')
-        fs.rmdirSync(path.join(projectPath, 'bin'), {recursive: true})
+        console.log('Removing useless files');
+        execSync('npx rimraf ./.git');
+        fs.rmdirSync(path.join(projectPath, 'bin'), {recursive: true});
 
-        console.log('The installation is fone, this is ready to use!')
+        console.log('The installation is fone, this is ready to use!');
     } catch(err) {
-        console.log(err)
+        console.log(err);
     }
 }
 
