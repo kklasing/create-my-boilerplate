@@ -16,6 +16,6 @@
     "rimraf": "^3.0.2"
   },
   "bin" :{
-    "create-boilerplate": "./bin/generate-app.js"
+    "create-my-boilerplate": "./bin/generate-app.js"
   }
 }
